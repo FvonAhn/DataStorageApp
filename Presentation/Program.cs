@@ -9,7 +9,7 @@ using Presentation.Dialogs;
 using Presentation.Interfaces;
 
 var services = new ServiceCollection()
-    .AddDbContext<DataContext>(options => options.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\development\FvACkurs\DataStorageApp\Data\Databases\my_database.mdf;Integrated Security=True;Connect Timeout=30"))
+    .AddDbContext<DataContext>(options => options.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\development\FvACkurs\DataStorageApp\Data\Databases\my_database_v2.mdf;Integrated Security=True;Connect Timeout=30"))
     .AddScoped<ICustomerRepository, CustomerRepository>()
     .AddScoped<ICustomerService, CustomerService>()
     .AddScoped<IProjectRepository, ProjectRepository>()
