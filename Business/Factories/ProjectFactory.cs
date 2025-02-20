@@ -10,6 +10,7 @@ public static class ProjectFactory
         Description = form.Description,
         StartDate = form.StartDate,
         EndDate = form.EndDate,
+        CustomerId = form.CustomerId,
     };
 
     public static Project? Create(ProjectEntity entity) => entity == null ? null : new()

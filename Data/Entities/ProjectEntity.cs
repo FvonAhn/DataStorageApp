@@ -17,4 +17,7 @@ public class ProjectEntity
 
     [Column(TypeName = "date")]
     public DateTime EndDate { get; set; }
+
+    public int CustomerId { get; set; }
+    public CustomerEntity Customer { get; set; } = null!;
 }

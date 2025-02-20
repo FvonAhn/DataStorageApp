@@ -276,7 +276,7 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
             Console.WriteLine("3. Update Projects");
             Console.WriteLine("4. Delete Projects");
             Console.WriteLine("5. Return to main menu");
-            Console.Write("Select your option");
+            Console.WriteLine("Select your option");
 
             var option = Console.ReadLine();
 
@@ -312,6 +312,30 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
     {
         Console.Clear();
         Console.WriteLine("### Create Project ###");
+
+        var customers = await _customerService.GetCustomersAsync();
+        if (customers == null || !customers.Any())
+        {
+            Console.WriteLine("No available Customers. Create one to start a new project");
+            Console.ReadKey();
+            return;
+        }
+
+        Console.WriteLine("Available Customers: ");
+        foreach (var customer in customers)
+        {
+            Console.WriteLine($"ID: {customer!.Id} - {customer.CustomerName}, {customer.CustomerContact}");
+        }
+
+        Console.WriteLine("Choose wich Customer to add to the project: ");
+        var customerInput = Console.ReadLine();
+        if (!int.TryParse(customerInput, out int customerId) || !customers.Any(x => x!.Id == customerId))
+        {
+            Console.WriteLine("Invalid Customer-Id");
+            Console.ReadKey();
+            return;
+        }
+
         Console.Write("Project Title: ");
         var title = Console.ReadLine()!;
 
@@ -333,7 +357,8 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
             Title = title,
             Description = description,
             StartDate = startDate,
-            EndDate = endDate!
+            EndDate = endDate!,
+            CustomerId = customerId,
         };
 
         var result = await _projectService.CreateProjectAsync(newProject);
