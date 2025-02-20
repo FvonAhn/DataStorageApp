@@ -141,7 +141,7 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
         }
         else
         {
-            Console.WriteLine("No Customers found");
+            Console.WriteLine("No available Customers");
         }
         Console.ReadKey();
     }
@@ -158,16 +158,16 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
 
         Console.WriteLine($"Updating Customer: {existingCustomer.CustomerName} ");
 
-        Console.Write($"New First Name (current: {existingCustomer.CustomerName}, leave empty to keep): ");
+        Console.Write($"New customer name (current: {existingCustomer.CustomerName}, leave empty to keep): ");
         var customerName = Console.ReadLine();
 
-        Console.Write($"New Last Name (current: {existingCustomer.CustomerContact}, leave empty to keep): ");
+        Console.Write($"New customer contact (current: {existingCustomer.CustomerContact}, leave empty to keep): ");
         var customerContact = Console.ReadLine();
 
-        Console.Write($"New Address (current: {existingCustomer.CustomerAddress}, leave empty to keep): ");
+        Console.Write($"New address (current: {existingCustomer.CustomerAddress}, leave empty to keep): ");
         var customerAddress = Console.ReadLine();
 
-        Console.Write($"New Phone Number (current: {existingCustomer.CustomerEmail}, leave empty to keep): ");
+        Console.Write($"New email (current: {existingCustomer.CustomerEmail}, leave empty to keep): ");
         var customerEmail = Console.ReadLine();
 
         var updatedForm = new CustomerUpdateForm
@@ -233,7 +233,7 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
         var customers = await _customerService.GetCustomersAsync();
         if (customers == null || !customers.Any())
         {
-            Console.WriteLine("No customers found to update");
+            Console.WriteLine("No available Customers");
             Console.ReadKey();
             return null;
         }
@@ -364,7 +364,7 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
         }
         else
         {
-            Console.WriteLine("No Projects found");
+            Console.WriteLine("No available Projects");
         }
         Console.ReadKey();
     }
@@ -401,11 +401,11 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
         var result = await _projectService.UpdateProjectAsync(existingProject.Title, updatedForm);
         if (result != null)
         {
-            Console.WriteLine("Customer was updated successfully");
+            Console.WriteLine("Project was updated succesfully");
         }
         else
         {
-            Console.WriteLine("Customer was not updated");
+            Console.WriteLine("Project was not updated");
         }
 
         Console.ReadKey();
@@ -453,7 +453,7 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
         var projects = await _projectService.GetProjectAsync();
         if (projects == null || !projects.Any())
         {
-            Console.WriteLine("No Projects found to update");
+            Console.WriteLine("No available Projects");
             Console.ReadKey();
             return null;
         }
@@ -475,7 +475,7 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
         var existingProject = projects.FirstOrDefault(x => x!.Id == projectId);
         if (existingProject == null)
         {
-            Console.WriteLine("Project not found");
+            Console.WriteLine("No available projects");
             Console.ReadKey();
             return null;
         }
