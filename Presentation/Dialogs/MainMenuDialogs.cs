@@ -489,7 +489,7 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
             Console.WriteLine($"ID: {project!.Id} {project.Title} {project.Description}  <{project.StartDate}>  {project.EndDate}");
         }
 
-        Console.Write("Enter Project Id to manage:");
+        Console.Write("Enter Project Id to manage: ");
         if (!int.TryParse(Console.ReadLine(), out var projectId))
         {
             Console.WriteLine("Invalid Id");
