@@ -384,7 +384,7 @@ public class MainMenuDialogs(ICustomerService customerService, IProjectService p
         {
             foreach (var project in projects)
             {
-                Console.WriteLine($"{project!.Title} {project.Description}  <{project.EndDate}>");
+                Console.WriteLine($"Title: {project!.Title}. Description: {project.Description}.  Done by date: {project.EndDate}.");
             }
         }
         else
